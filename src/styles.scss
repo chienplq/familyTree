@@ -1,0 +1,170 @@
+/* You can add global styles to this file, and also import other style files */
+/*Now the CSS*/
+* {margin: 0; padding: 0; }
+.tree {
+text-align: center;
+width: 200000px;
+height: 200000px;}
+.tree .big-one {
+	padding-top: 20px; 
+	position: relative;
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+}
+	
+.tree .sml-one {
+	
+	float: left; text-align: center;
+	list-style-type: none;
+	position: relative;
+	padding: 20px 5px 0 5px;
+	
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+}
+
+.node-img {
+	float: left;
+	position: relative;
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+}
+
+.node-info b{
+	font-size: 14px;
+	
+}
+.node-info {
+	float: left;
+	text-align: center;
+	list-style-type: none;
+	position: relative;
+	padding: 0px 5px 0px 5px;
+	
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+}
+
+/*We will use ::before and ::after to draw the connectors*/
+
+.tree .sml-one::before, .tree .sml-one::after{
+	content: '';
+	position: absolute; top: 0; right: 50%;
+	border-top: 1px solid #ccc;
+	width: 50%; height: 20px;
+}
+.tree .sml-one::after{
+	right: auto; left: 50%;
+	border-left: 1px solid #ccc;
+}
+
+/*We need to remove left-right connectors from elements without 
+any siblings*/
+.tree .sml-one:only-child::after, .tree .sml-one:only-child::before {
+	display: none;
+}
+
+/*Remove space from the top of single children*/
+.tree .sml-one:only-child{ 
+	min-width: 100%;
+	padding: 0;
+}
+#firstLi{
+	min-width: 0 ;
+}
+/*Remove left connector from first child and 
+right connector from last child*/
+.tree .sml-one:first-child::before, .tree .sml-one:last-child::after{
+	border: 0 none;
+}
+/*Adding back the vertical connector to the last nodes*/
+.tree .sml-one:last-child::before{
+	border-right: 1px solid #ccc;
+	border-radius: 0 5px 0 0;
+	-webkit-border-radius: 0 5px 0 0;
+	-moz-border-radius: 0 5px 0 0;
+}
+.tree .sml-one:first-child::after{
+	border-radius: 5px 0 0 0;
+	-webkit-border-radius: 5px 0 0 0;
+	-moz-border-radius: 5px 0 0 0;
+}
+
+/*Time to add downward connectors from parents*/
+.tree .big-one .big-one::before{
+	content: '';
+	position: absolute; top: 0; left: 50%;
+	border-left: 1px solid #ccc;
+	width: 50%; height: 20px;
+}
+
+.tree .sml-one .node{
+	
+	//width: 150px;
+	background: #c8e4f8;
+	border: 1px solid #ccc;
+	padding: 5px;
+	margin-bottom: -5px;
+	text-decoration: none;
+	color: #666;
+	font-family: arial, verdana, tahoma;
+	font-size: 11px;
+	display: inline-block;
+	
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	
+	transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+}
+
+/*Time for some hover effects*/
+/*We will apply the hover effect the the lineage of the element also*/
+.tree .sml-one .node:hover, .tree .sml-one .node:hover+.big-one .sml-one .node {
+	background: #88c5f1; color: #000; border: 1px solid #94a0b4;
+}
+/*Connector styles on hover*/
+.tree .sml-one .node:hover+.big-one .sml-one::after, 
+.tree .sml-one .node:hover+.big-one .sml-one::before, 
+.tree .sml-one .node:hover+.big-one::before, 
+.tree .sml-one .node:hover+.big-one .big-one::before{
+	border-color:  #94a0b4;
+}
+
+/*Thats all. I hope you enjoyed it.
+Thanks :)*/
+
+
+#mypopup {
+	z-index: 1;
+	width: 400px;
+	padding: 20px;
+	font-family: Arial, sans-serif;
+	font-size: 10pt;
+	background-color: rgb(206, 191, 191);
+	border: 1px solid #ccc;
+	border-radius: 6px;
+	position: absolute;
+	display: none;
+  }
+  
+  #mypopup::before {
+	content: "";
+	width: 12px;
+	height: 12px;
+	transform: rotate(45deg);
+	background-color: white;
+	position: relative;
+	left: -6px;
+	top: 68px;
+  }
+  .node-button{
+	  display: none;
+  }
+ 
