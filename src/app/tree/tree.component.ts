@@ -21,10 +21,7 @@ export class TreeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.message);
-    console.log("beforeinit", this.dataJSONFile);
     this.dataJSONFile = jsonData.data;
-    console.log("init", this.dataJSONFile);
     this.list = [];
     this.list = this.arrToTree(this.dataJSONFile)[0];
     this.data.currentMessage.subscribe(mess => {
@@ -46,15 +43,12 @@ export class TreeComponent implements OnInit {
     
 
     if (treeView&&firstLi) {
-      console.log(firstLi.offsetWidth ,"a", window.innerWidth)
       if (firstLi.offsetWidth < window.innerWidth) {
         firstLi.style.marginLeft = ((window.innerWidth - firstLi.offsetWidth) / 2) + "px";
         treeView.style.width =window.innerWidth +"px";
         treeView.style.height =window.innerHeight +"px";
-        console.log("firstLi.style.marginLeft", firstLi.style.marginLeft);
       } else {
         firstLi.style.marginLeft = "0px";
-        console.log("firstLi.style.marginLeft", firstLi.style.marginLeft);
         treeView.style.width =  firstLi.offsetWidth + "px";
         treeView.style.height =  firstLi.offsetHeight + "px";
       }

@@ -3,9 +3,9 @@
 		<b (click) = (newMess())>{{tree.Name | uppercase}}</b>
 	</div>
 	<div class="node-button">
-			<mat-icon>remove_circle_outline</mat-icon>
-			<mat-icon>keyboard_arrow_down</mat-icon>
-			<mat-icon>info</mat-icon>
+			<mat-icon [inline]="true">remove_circle_outline</mat-icon>
+			<mat-icon [inline]="true">keyboard_arrow_down</mat-icon>
+			<mat-icon [inline]="true">info</mat-icon>
 	</div>
 </div>
 
@@ -14,10 +14,10 @@
 	<ng-container ng-style="{'min-width':'100%'; 'text-align'='center';}" *ngFor="let childView of tree.childView">
 		<div class="sml-one" app-node *ngIf="childView.showView" [tree]="childView">abc</div>
 	</ng-container>
-	<div class="sml-one" *ngIf="isShow(tree.childView)">
-		<div id="myicon" class="node">
+	<div style="cursor: pointer;" class="sml-one" (click)="showAllChild()" *ngIf="isShow(tree.childView)">
+		<div class="node">
 			<div class="node-info">
-				<b class="showMore" (click)="showAllChild()" attr.id="id_{{tree.Id}}">....</b>
+				<b class="showMore"  attr.id="id_{{tree.Id}}">....</b>	
 			</div>
 		</div>
 	</div>
